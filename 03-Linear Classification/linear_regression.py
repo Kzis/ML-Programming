@@ -17,14 +17,14 @@ from sklearn.datasets import load_boston
 class LinearRegression:
     def __init__(self, fit_intercept=True, normalize=False,
                  max_iter=1000, learning_rate=0.001):
-        self.fit_intercept = fit_intercept
-        self.normalize = normalize
-        self.max_iter = max_iter
-        self.learning_rate = learning_rate
-        self.weights = None
-        self.X = None
-        self.y = None
-        self.trained = False
+        self.fit_intercept = fit_intercept # model จะมี  beta , seta = 0  มั้ย ตามสมการ y = a0(ตัวนี้) + a1x1 + a2x2 + ... +anxn
+        self.normalize = normalize # จะเอา data ของแต่ละ feature ไป normalize มั้ย
+        self.max_iter = max_iter # จำนวนรอบการทำงาน
+        self.learning_rate = learning_rate # ความเร็วในการเรียนรู้ในแต่ละ epot ถ้าเยอะไปมันก็จะโดด ถ้าน้อยไปมันก็จะช้ามาก
+        self.weights = None # ค่าของ a1 a2 ของ Feature (สปส)
+        self.X = None # Feature class
+        self.y = None # Label class
+        self.trained = False # 
 
     def fit(self, X, y, sample_weight=None, verbose=False):
         self.X = X.copy()
@@ -107,8 +107,8 @@ class LinearRegression:
 def main():
     data = np.genfromtxt('weight_height_male.csv', delimiter=',')
 
-    height = data[:, 0]
-    weight = data[:, 1]
+    height = data[:, 0] # : = เอาทุก row ขอ col 0
+    weight = data[:, 1] # : = เอาทุก row ขอ col 1
 
     X = height.reshape(height.shape[0], 1)
     y = weight
